@@ -2,7 +2,7 @@ import { User } from 'lucide-react';
 
 export default function Header() {
   return (
-    <div className="bg-white shadow-sm">
+    <div className="bg-white shadow-sm rounded-b-3xl">
       <div className="max-w-6xl mx-auto px-4 py-6">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
