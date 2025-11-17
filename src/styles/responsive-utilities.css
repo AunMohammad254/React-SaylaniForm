@@ -1,0 +1,418 @@
+/* Responsive Utility Classes */
+
+/* Container Utilities */
+.container-responsive {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 36rem) {
+  .container-responsive {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .container-responsive {
+    max-width: 48rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 62rem) {
+  .container-responsive {
+    max-width: 62rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .container-responsive {
+    max-width: 75rem;
+  }
+}
+
+/* Grid Utilities */
+.grid-responsive-1 {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.grid-responsive-2 {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 48rem) {
+  .grid-responsive-2 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.grid-responsive-3 {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 48rem) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 75rem) {
+  .grid-responsive-3 {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Touch-friendly elements */
+.touch-friendly {
+  min-height: 2.75rem;
+  min-width: 2.75rem;
+  padding: 0.75rem 1rem;
+}
+
+@media (min-width: 36rem) {
+  .touch-friendly {
+    min-height: 3rem;
+    min-width: 3rem;
+    padding: 0.875rem 1.25rem;
+  }
+}
+
+/* Typography Responsive */
+.text-responsive-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.text-responsive-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-responsive-base {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-responsive-lg {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+@media (min-width: 36rem) {
+  .text-responsive-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+}
+
+.text-responsive-xl {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+@media (min-width: 36rem) {
+  .text-responsive-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .text-responsive-xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+}
+
+.text-responsive-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+@media (min-width: 36rem) {
+  .text-responsive-2xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .text-responsive-2xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+/* Spacing Utilities */
+.space-responsive-sm {
+  gap: 0.5rem;
+}
+
+@media (min-width: 36rem) {
+  .space-responsive-sm {
+    gap: 0.75rem;
+  }
+}
+
+.space-responsive-md {
+  gap: 1rem;
+}
+
+@media (min-width: 36rem) {
+  .space-responsive-md {
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .space-responsive-md {
+    gap: 2rem;
+  }
+}
+
+.space-responsive-lg {
+  gap: 1.5rem;
+}
+
+@media (min-width: 36rem) {
+  .space-responsive-lg {
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .space-responsive-lg {
+    gap: 3rem;
+  }
+}
+
+/* Padding Utilities */
+.p-responsive-sm {
+  padding: 1rem;
+}
+
+@media (min-width: 36rem) {
+  .p-responsive-sm {
+    padding: 1.5rem;
+  }
+}
+
+.p-responsive-md {
+  padding: 1rem;
+}
+
+@media (min-width: 36rem) {
+  .p-responsive-md {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .p-responsive-md {
+    padding: 2rem;
+  }
+}
+
+.p-responsive-lg {
+  padding: 1.5rem;
+}
+
+@media (min-width: 36rem) {
+  .p-responsive-lg {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 48rem) {
+  .p-responsive-lg {
+    padding: 3rem;
+  }
+}
+
+/* Margin Utilities */
+.m-responsive-sm {
+  margin: 0.5rem;
+}
+
+@media (min-width: 36rem) {
+  .m-responsive-sm {
+    margin: 0.75rem;
+  }
+}
+
+.m-responsive-md {
+  margin: 1rem;
+}
+
+@media (min-width: 36rem) {
+  .m-responsive-md {
+    margin: 1.5rem;
+  }
+}
+
+/* Flexbox Utilities */
+.flex-responsive-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.flex-responsive-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 48rem) {
+  .flex-responsive-row {
+    flex-direction: row;
+    gap: 1.5rem;
+  }
+}
+
+/* Image Responsive */
+.img-responsive {
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+/* Form Element Responsive */
+.form-responsive {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  transition: all 0.2s ease-in-out;
+}
+
+@media (min-width: 36rem) {
+  .form-responsive {
+    min-height: 3rem;
+    padding: 0.875rem 1.125rem;
+    font-size: 1rem;
+  }
+}
+
+.form-responsive:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Button Responsive */
+.btn-responsive {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.75rem;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  border: none;
+  gap: 0.5rem;
+}
+
+@media (min-width: 36rem) {
+  .btn-responsive {
+    min-height: 3rem;
+    padding: 0.875rem 1.5rem;
+    font-size: 1.125rem;
+  }
+}
+
+.btn-responsive:hover {
+  transform: translateY(-1px);
+}
+
+.btn-responsive:active {
+  transform: translateY(0);
+}
+
+/* Performance Optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.reduce-motion {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 47.9375rem) {
+  .mobile-optimized {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  .mobile-scroll {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Reduce animations on mobile for better performance */
+  * {
+    animation-duration: 0.3s !important;
+    transition-duration: 0.3s !important;
+  }
+}
+
+/* High DPI display optimizations */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .high-dpi-optimized {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .dark-mode-responsive {
+    background-color: #1f2937;
+    color: #f9fafb;
+  }
+  
+  .dark-mode-responsive input,
+  .dark-mode-responsive select,
+  .dark-mode-responsive textarea {
+    background-color: #374151;
+    border-color: #6b7280;
+    color: #f9fafb;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-optimized {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+}

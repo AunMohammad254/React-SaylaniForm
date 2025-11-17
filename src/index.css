@@ -1,17 +1,302 @@
 @import "tailwindcss";
+@import "./styles/responsive-utilities.css";
 
+/* CSS Custom Properties for Responsive Design */
 :root {
   font-family: "Inter", Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
+  
   color-scheme: light dark;
-  background-color: #242424;
+  background-color: #f8fafc;
+  
+  /* Responsive breakpoints */
+  --breakpoint-xs: 20rem;    /* 320px */
+  --breakpoint-sm: 36rem;    /* 576px */
+  --breakpoint-md: 48rem;    /* 768px */
+  --breakpoint-lg: 62rem;    /* 992px */
+  --breakpoint-xl: 75rem;    /* 1200px */
+  
+  /* Responsive spacing scale */
+  --space-xs: 0.25rem;       /* 4px */
+  --space-sm: 0.5rem;        /* 8px */
+  --space-md: 1rem;          /* 16px */
+  --space-lg: 1.5rem;        /* 24px */
+  --space-xl: 2rem;          /* 32px */
+  --space-2xl: 3rem;         /* 48px */
+  --space-3xl: 4rem;         /* 64px */
+  
+  /* Responsive font sizes - mobile first */
+  --font-xs: 0.75rem;        /* 12px */
+  --font-sm: 0.875rem;       /* 14px */
+  --font-base: 1rem;         /* 16px */
+  --font-lg: 1.125rem;       /* 18px */
+  --font-xl: 1.25rem;        /* 20px */
+  --font-2xl: 1.5rem;        /* 24px */
+  --font-3xl: 1.875rem;      /* 30px */
+  --font-4xl: 2.25rem;       /* 36px */
+  
+  /* Touch-friendly sizing */
+  --touch-target-min: 2.75rem; /* 44px minimum touch target */
+  --touch-target-comfortable: 3rem; /* 48px comfortable touch target */
+  
+  /* Container max-widths */
+  --container-xs: 100%;
+  --container-sm: 100%;
+  --container-md: 48rem;     /* 768px */
+  --container-lg: 62rem;     /* 992px */
+  --container-xl: 75rem;     /* 1200px */
+  
+  /* Z-index scale */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
 }
-/* Your custom styles here */
+
+/* Custom theme configuration */
 @theme {
-  /* Custom theme configuration (optional) */
   --color-primary: #0ea5e9;
   --color-secondary: #22c55e;
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+  
+  /* Responsive containers */
+  --size-container-xs: 100%;
+  --size-container-sm: 100%;
+  --size-container-md: 48rem;
+  --size-container-lg: 62rem;
+  --size-container-xl: 75rem;
+}
 
+/* Base responsive styles */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%; /* 16px base */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  min-height: 100svh; /* Support for newer viewport units */
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background-color: #f8fafc;
+  font-size: var(--font-base);
+  overflow-x: hidden;
+}
+
+/* Responsive images */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Touch-friendly interactive elements */
+button,
+[role="button"],
+input[type="submit"],
+input[type="button"] {
+  min-height: var(--touch-target-min);
+  min-width: var(--touch-target-min);
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: var(--font-base);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Form elements responsive styling */
+input,
+select,
+textarea {
+  min-height: var(--touch-target-comfortable);
+  width: 100%;
+  font-size: var(--font-base);
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Mobile-first breakpoints */
+
+/* Small mobile devices (320px and up) */
+@media (min-width: 20rem) {
+  :root {
+    --font-base: 1rem;
+    --font-lg: 1.125rem;
+    --font-xl: 1.25rem;
+    --font-2xl: 1.5rem;
+    --font-3xl: 1.875rem;
+  }
+  
+  .container {
+    width: 100%;
+    padding-left: var(--space-md);
+    padding-right: var(--space-md);
+  }
+}
+
+/* Large mobile devices (576px and up) */
+@media (min-width: 36rem) {
+  :root {
+    --font-lg: 1.25rem;
+    --font-xl: 1.5rem;
+    --font-2xl: 1.875rem;
+    --font-3xl: 2.25rem;
+  }
+  
+  .container {
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+  }
+  
+  /* Grid system adjustments */
+  .grid-responsive {
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+  }
+}
+
+/* Tablet devices (768px and up) */
+@media (min-width: 48rem) {
+  :root {
+    --font-xl: 1.5rem;
+    --font-2xl: 2rem;
+    --font-3xl: 2.5rem;
+    --font-4xl: 3rem;
+  }
+  
+  .container {
+    max-width: var(--container-md);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--space-xl);
+    padding-right: var(--space-xl);
+  }
+  
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-xl);
+  }
+}
+
+/* Small desktop (992px and up) */
+@media (min-width: 62rem) {
+  .container {
+    max-width: var(--container-lg);
+    padding-left: var(--space-2xl);
+    padding-right: var(--space-2xl);
+  }
+  
+  .grid-responsive {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-2xl);
+  }
+}
+
+/* Large desktop (1200px and up) */
+@media (min-width: 75rem) {
+  .container {
+    max-width: var(--container-xl);
+  }
+  
+  .grid-responsive {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Utility classes for responsive behavior */
+.responsive-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--space-md);
+  padding-right: var(--space-md);
+}
+
+.responsive-grid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: 1fr;
+}
+
+.responsive-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.touch-target {
+  min-height: var(--touch-target-comfortable);
+  min-width: var(--touch-target-comfortable);
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --color-primary: #0066cc;
+    --color-secondary: #006600;
+  }
+  
+  input,
+  select,
+  textarea {
+    border-width: 2px;
+  }
+  
+  button {
+    border: 2px solid currentColor;
+  }
+}
+
+/* Print styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
 }

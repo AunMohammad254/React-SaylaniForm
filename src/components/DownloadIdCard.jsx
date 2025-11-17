@@ -84,7 +84,7 @@ export default function DownloadIDCard() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-r from-primary to-secondary">
+    <div className="min-h-screen">
       {/* Header */}
       {/* <div className="bg-white shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-6">
@@ -125,7 +125,7 @@ export default function DownloadIDCard() {
           <h1 className="text-3xl text-green-600 font-bold text-center mb-2">Registration Form - SMIT</h1>
           <p className="text-center text-gray-600 mb-8">Services - Education - Registration</p>
 
-          <div className="flex gap-4 mb-8 border-b">
+          {/* <div className="flex gap-4 mb-8 border-b">
             <button className="px-6 py-3 text-gray-600 hover:text-gray-800">
               <a href="/">Registration</a>
             </button>
@@ -135,7 +135,7 @@ export default function DownloadIDCard() {
             <button className="px-6 py-3 text-gray-600 hover:text-gray-800">
               <a href="/results">Results</a>
             </button>
-          </div>
+          </div> */}
 
           {/* CNIC Search Form */}
           <div className="max-w-2xl mx-auto mb-12">
@@ -160,7 +160,7 @@ export default function DownloadIDCard() {
               <button
                 onClick={handleSubmit}
                 disabled={loading}
-                className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-md transition duration-200 disabled:bg-gray-400"
+                className="w-full bg-blue-500 hover:bg-blue-600 text-black font-semibold py-3 px-6 rounded-md transition duration-200 disabled:bg-gray-400"
               >
                 {loading ? 'SEARCHING...' : 'SUBMIT'}
               </button>
@@ -174,14 +174,14 @@ export default function DownloadIDCard() {
               <div className="flex justify-center gap-4 print:hidden">
                 <button
                   onClick={handleDownload}
-                  className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition"
+                  className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-black font-semibold rounded-md transition"
                 >
                   <Download size={20} />
                   DOWNLOAD
                 </button>
                 <button
                   onClick={handlePrint}
-                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition"
+                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-black font-semibold rounded-md transition"
                 >
                   <Printer size={20} />
                   PRINT
