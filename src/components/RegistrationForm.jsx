@@ -52,8 +52,8 @@ export default function RegistrationForm() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 pb-12">
-      <div className="bg-white rounded-lg shadow-md p-8">
-        <h1 className="text-3xl font-bold text-center mb-2">
+      <div className="bg-linear-to-bl from-white  to-[#d0dfda] rounded-lg shadow-md p-8">
+        <h1 className="text-3xl text-green-600  font-bold text-center mb-2">
           Registration Form - SMIT
         </h1>
         <p className="text-center text-gray-600 mb-8">

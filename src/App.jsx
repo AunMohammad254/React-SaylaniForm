@@ -8,7 +8,7 @@ import DownloadIDCard from './components/DownloadIDCard';
 function App() {
   return (
     <BrowserRouter>
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-linear-to-r from-primary to-secondary">
         <Header />
         <SocialLinks />
         <Routes>

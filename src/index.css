@@ -6,11 +6,12 @@
   font-weight: 400;
 
   color-scheme: light dark;
+  background-color: #242424;
 }
 /* Your custom styles here */
 @theme {
   /* Custom theme configuration (optional) */
   --color-primary: #0ea5e9;
   --color-secondary: #22c55e;
-  
+
 }

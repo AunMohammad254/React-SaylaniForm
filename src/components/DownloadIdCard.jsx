@@ -84,7 +84,7 @@ export default function DownloadIDCard() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-linear-to-r from-primary to-secondary">
       {/* Header */}
       {/* <div className="bg-white shadow-sm">
         <div className="max-w-6xl mx-auto px-4 py-6">
@@ -121,8 +121,8 @@ export default function DownloadIDCard() {
 
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 pb-12">
-        <div className="bg-white rounded-lg shadow-md p-8">
-          <h1 className="text-3xl font-bold text-center mb-2">Registration Form - SMIT</h1>
+        <div className="bg-linear-to-bl from-white  to-[#d0dfda] rounded-lg shadow-md p-8">
+          <h1 className="text-3xl text-green-600 font-bold text-center mb-2">Registration Form - SMIT</h1>
           <p className="text-center text-gray-600 mb-8">Services - Education - Registration</p>
 
           <div className="flex gap-4 mb-8 border-b">
@@ -149,7 +149,7 @@ export default function DownloadIDCard() {
                   value={cnic}
                   onChange={handleCNICChange}
                   placeholder="CNIC (Which you provided during form submission)"
-                  className={`w-full px-4 py-3 border rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  className={`w-full px-4 py-3 border text-black rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
                     error ? 'border-red-500' : 'border-gray-300'
                   }`}
                   maxLength={15}
@@ -191,7 +191,7 @@ export default function DownloadIDCard() {
               {/* Student Cards Table */}
               <div className="overflow-x-auto">
                 <table className="w-full border-collapse">
-                  <thead className="bg-gray-50">
+                  <thead className="bg-gray-50 text-teal-600">
                     <tr>
                       <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Course / Event</th>
                       <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Batch</th>
@@ -199,7 +199,7 @@ export default function DownloadIDCard() {
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="hover:bg-gray-50">
+                    <tr className="hover:bg-gray-50 text-teal-950">
                       <td className="border border-gray-300 px-4 py-3">{studentData.course}</td>
                       <td className="border border-gray-300 px-4 py-3">{studentData.batch}</td>
                       <td className="border border-gray-300 px-4 py-3">
