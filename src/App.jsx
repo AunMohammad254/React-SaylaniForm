@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Header from './components/Header';
 import SocialLinks from './components/SocialLinks';
 import RegistrationForm from './components/RegistrationForm';
-import DownloadIDCard from './components/DownloadIDCard';
+import DownloadIDCard from './components/DownloadIdCard';
 // import Results from './components/Results';
 
 function App() {
