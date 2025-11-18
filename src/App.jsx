@@ -43,7 +43,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-[calc(var(--vh,1vh)*100)] bg-gradient-to-b from-[#16a34a] via-[#4ade80] to-[#bbf7d0] overflow-x-hidden">
+      <div className="min-h-[calc(var(--vh,1vh)*100)] bg-linear-to-b from-[#16a34a] via-[#4ade80] to-[#bbf7d0] overflow-x-hidden">
         {/* Skip to main content link for accessibility */}
         <a 
           href="#main-content" 
