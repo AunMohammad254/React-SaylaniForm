@@ -96,7 +96,7 @@ function App() {
               &copy; {new Date().getFullYear()} Saylani Mass IT Training. All rights reserved.
             </p>
             <p className="text-xs">
-              Designed with ❤️ for better accessibility and user experience
+              Designed with ❤️ By Aun Abbas using React and Tailwind CSS.
             </p>
           </div>
         </footer>
