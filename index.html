@@ -2,19 +2,71 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./favicon.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes" />
-    <meta name="format-detection" content="telephone=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-    <title>Saylani Admission Form - Responsive</title>
-    <!-- Preload critical fonts for better performance -->
+    
+    <!-- Performance: DNS Prefetch & Preconnect -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://saylaniwelfare.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon & App Icons -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+    
+    <!-- Viewport & Mobile Optimization -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, user-scalable=yes, viewport-fit=cover" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="SMIT Registration" />
+    
+    <!-- Theme & Colors -->
+    <meta name="theme-color" content="#16a34a" />
+    <meta name="msapplication-TileColor" content="#16a34a" />
+    <meta name="msapplication-navbutton-color" content="#16a34a" />
+    
+    <!-- SEO Meta Tags -->
+    <title>SMIT Registration | Saylani Mass IT Training</title>
+    <meta name="description" content="Register for Saylani Mass IT Training (SMIT) courses. Free IT education including Web Development, Mobile App Development, and more." />
+    <meta name="keywords" content="Saylani, SMIT, IT Training, Free Education, Web Development, Pakistan, Karachi" />
+    <meta name="author" content="Aun Abbas" />
+    <meta name="robots" content="index, follow" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SMIT Registration | Saylani Mass IT Training" />
+    <meta property="og:description" content="Register for free IT courses at Saylani Mass IT Training. Transform your future with quality education." />
+    <meta property="og:site_name" content="SMIT Registration" />
+    <meta property="og:locale" content="en_PK" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SMIT Registration | Saylani Mass IT Training" />
+    <meta name="twitter:description" content="Register for free IT courses at Saylani Mass IT Training." />
+    
+    <!-- Fonts with Display Swap for Performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    </noscript>
+    
+    <!-- Critical CSS for Initial Load -->
+    <style>
+      /* Critical CSS - Above the fold styles */
+      *,*::before,*::after{box-sizing:border-box}
+      html{-webkit-text-size-adjust:100%;line-height:1.5}
+      body{margin:0;font-family:'Inter',system-ui,-apple-system,sans-serif;background:#f0fdf4}
+      #root{min-height:100vh;min-height:100dvh}
+      
+      /* Loading state */
+      .app-loading{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 50%,#d1fae5 100%)}
+      .app-loading::after{content:'';width:40px;height:40px;border:3px solid #dcfce7;border-top-color:#16a34a;border-radius:50%;animation:spin 1s linear infinite}
+      @keyframes spin{to{transform:rotate(360deg)}}
+    </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root" class="app-loading"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
