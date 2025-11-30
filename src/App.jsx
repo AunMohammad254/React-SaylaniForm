@@ -4,7 +4,7 @@ import Header from './components/Header';
 import SocialLinks from './components/SocialLinks';
 import RegistrationForm from './components/RegistrationForm';
 import DownloadIDCard from './components/DownloadIdCard';
-// import Results from './components/Results';
+import Results from './components/Results';
 
 function App() {
   // Performance optimization for mobile devices
@@ -59,7 +59,7 @@ function App() {
           <Routes>
             <Route path="/" element={<RegistrationForm />} />
             <Route path="/download-id" element={<DownloadIDCard />} />
-            {/* <Route path="/results" element={<Results />} /> */}
+            <Route path="/results" element={<Results />} />
           </Routes>
         </main>
 
