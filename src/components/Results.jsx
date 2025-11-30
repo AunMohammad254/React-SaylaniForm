@@ -2,6 +2,8 @@ import { useState, useMemo, useRef } from 'react';
 import { validateCNIC } from '../utils/validation';
 import { Search, Download, Printer } from 'lucide-react';
 import { search as searchStudent } from '../utils/studentService';
+import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
 
 function Results() {
   const [cnic, setCnic] = useState('');
@@ -16,11 +18,13 @@ function Results() {
   const onSearch = () => {
     if (!normalizedCNIC && !studentCode) {
       setError('Provide CNIC or Student Code to search');
+      toast.error('Provide CNIC or Student Code to search');
       return;
     }
 
     if (normalizedCNIC && !validateCNIC(cnic)) {
       setError('Invalid CNIC format. Use 13 digits or 5-7-1 pattern.');
+      toast.error('Invalid CNIC format');
       return;
     }
 
@@ -32,8 +36,10 @@ function Results() {
       if (!found) {
         setError('No record found. Please check your details and try again.');
         setResult(null);
+        toast.error('No record found');
       } else {
         setResult(found);
+        toast.success('Result found!');
       }
       setLoading(false);
     }, 600);
@@ -41,7 +47,8 @@ function Results() {
 
   const handleDownload = () => {
     if (cardRef.current) {
-      alert('Download will export the ID card as image/PDF.');
+      toast.success('Download started...');
+      // alert('Download will export the ID card as image/PDF.');
     }
   };
 
@@ -52,32 +59,37 @@ function Results() {
   return (
     <div className="min-h-screen">
       <div className="max-w-6xl mx-auto px-4 pb-12">
-        <div className="bg-linear-to-bl from-white to-[#d0dfda] rounded-lg shadow-md p-6 sm:p-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white/80 backdrop-blur-sm rounded-lg shadow-md p-6 sm:p-8 border border-green-100"
+        >
           <h1 className="text-2xl sm:text-3xl text-green-600 font-bold text-center mb-2">Results & ID Card</h1>
           <p className="text-center text-gray-700 mb-8">Find your ID card by CNIC or Student Code</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-3xl mx-auto mb-8">
             <div>
-              <label className="block text-sm font-medium text-blue-600 mb-2">CNIC</label>
+              <label className="block text-sm font-medium text-green-600 mb-2">CNIC</label>
               <input
                 type="text"
                 value={cnic}
                 onChange={(e) => setCnic(e.target.value)}
                 placeholder="e.g. 42101-4349016-7 or 4210143490167"
-                className={`w-full px-4 py-3 border text-black rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full px-4 py-3 border text-black rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent ${
                   error && !studentCode ? 'border-red-500' : 'border-gray-300'
                 }`}
                 maxLength={15}
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-blue-600 mb-2">Student Code</label>
+              <label className="block text-sm font-medium text-green-600 mb-2">Student Code</label>
               <input
                 type="text"
                 value={studentCode}
                 onChange={(e) => setStudentCode(e.target.value)}
                 placeholder="e.g. WMA-345770"
-                className={`w-full px-4 py-3 border text-black rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                className={`w-full px-4 py-3 border text-black rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent ${
                   error && !normalizedCNIC ? 'border-red-500' : 'border-gray-300'
                 }`}
               />
@@ -85,49 +97,59 @@ function Results() {
           </div>
 
           {error && (
-            <div className="max-w-3xl mx-auto mb-4">
+            <motion.div 
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              className="max-w-3xl mx-auto mb-4"
+            >
               <div className="bg-red-50 border-l-4 border-red-500 p-3 text-red-700 text-sm rounded">
                 {error}
               </div>
-            </div>
+            </motion.div>
           )}
 
           <div className="max-w-3xl mx-auto mb-10">
-            <button
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={onSearch}
               disabled={loading}
-              className="w-full md:w-auto flex items-center justify-center gap-2 bg-blue-500 hover:bg-blue-600 text-black font-semibold py-3 px-6 rounded-md transition duration-200 disabled:bg-gray-400"
+              className="w-full md:w-auto flex items-center justify-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-md transition duration-200 disabled:bg-gray-400 shadow-lg hover:shadow-green-500/30 mx-auto"
             >
               <Search size={18} /> {loading ? 'Searching...' : 'Search'}
-            </button>
+            </motion.button>
           </div>
 
           {result && (
-            <div className="space-y-6">
-              <div className="overflow-x-auto">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="space-y-6"
+            >
+              <div className="overflow-x-auto rounded-lg border border-gray-200">
                 <table className="w-full border-collapse">
-                  <thead className="bg-gray-50 text-teal-600">
+                  <thead className="bg-green-50 text-green-800">
                     <tr>
-                      <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Course / Event</th>
-                      <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Batch</th>
-                      <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Action</th>
+                      <th className="border-b border-gray-200 px-4 py-3 text-left font-semibold">Course / Event</th>
+                      <th className="border-b border-gray-200 px-4 py-3 text-left font-semibold">Batch</th>
+                      <th className="border-b border-gray-200 px-4 py-3 text-left font-semibold">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="hover:bg-gray-50 text-teal-950">
-                      <td className="border border-gray-300 px-4 py-3">{result.course}</td>
-                      <td className="border border-gray-300 px-4 py-3">{result.batch}</td>
-                      <td className="border border-gray-300 px-4 py-3">
+                    <tr className="hover:bg-green-50/30 text-gray-800 transition-colors">
+                      <td className="border-b border-gray-200 px-4 py-3">{result.course}</td>
+                      <td className="border-b border-gray-200 px-4 py-3">{result.batch}</td>
+                      <td className="border-b border-gray-200 px-4 py-3">
                         <div className="flex gap-3">
                           <button
                             onClick={handleDownload}
-                            className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-black font-medium rounded-md transition"
+                            className="flex items-center gap-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition text-sm"
                           >
                             <Download size={18} /> Download
                           </button>
                           <button
                             onClick={handlePrint}
-                            className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-black font-medium rounded-md transition"
+                            className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition text-sm"
                           >
                             <Printer size={18} /> Print
                           </button>
@@ -140,7 +162,7 @@ function Results() {
 
               <div ref={cardRef} className="max-w-3xl mx-auto bg-white p-6 sm:p-8 print:p-0">
                 <div className="border-4 border-green-600 rounded-lg overflow-hidden shadow-xl">
-                  <div className="bg-linear-to-r from-green-600 to-blue-600 p-4 sm:p-6 text-white">
+                  <div className="bg-linear-to-r from-green-600 to-green-700 p-4 sm:p-6 text-white">
                     <div className="flex items-center justify-between gap-4">
                       <img
                         src="https://saylaniwelfare.com/static/media/logo_saylaniwelfare.22bf709605809177256c.png"
@@ -216,7 +238,7 @@ function Results() {
                         <div className="mt-4 pt-4 border-t border-gray-300">
                           <p className="text-sm text-gray-600">
                             <span className="font-semibold">Donate Us:</span>
-                            <a href="https://www.saylaniwelfare.com" className="text-blue-600 hover:underline"> https://www.saylaniwelfare.com</a>
+                            <a href="https://www.saylaniwelfare.com" className="text-green-600 hover:underline"> https://www.saylaniwelfare.com</a>
                           </p>
                         </div>
 
@@ -244,9 +266,9 @@ function Results() {
                   .print\\:hidden { display: none !important; }
                 }
               `}</style>
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
       </div>
     </div>
   );

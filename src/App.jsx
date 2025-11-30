@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 import Header from './components/Header';
 import SocialLinks from './components/SocialLinks';
 import RegistrationForm from './components/RegistrationForm';
@@ -43,11 +44,36 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div className="min-h-[calc(var(--vh,1vh)*100)] bg-linear-to-b from-[#16a34a] via-[#4ade80] to-[#bbf7d0] overflow-x-hidden">
+      <div className="min-h-[calc(var(--vh,1vh)*100)] bg-linear-to-br from-green-50 via-emerald-50 to-teal-50 overflow-x-hidden">
+        <Toaster 
+          position="top-center"
+          toastOptions={{
+            duration: 4000,
+            style: {
+              background: '#fff',
+              color: '#333',
+              boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
+              borderRadius: '0.5rem',
+              padding: '16px',
+            },
+            success: {
+              iconTheme: {
+                primary: '#16a34a',
+                secondary: '#fff',
+              },
+            },
+            error: {
+              iconTheme: {
+                primary: '#ef4444',
+                secondary: '#fff',
+              },
+            },
+          }}
+        />
         {/* Skip to main content link for accessibility */}
         <a 
           href="#main-content" 
-          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-blue-600 text-white px-4 py-2 rounded-lg z-50"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-green-600 text-white px-4 py-2 rounded-lg z-50"
         >
           Skip to main content
         </a>

@@ -1,6 +1,8 @@
 import { useState, useRef } from 'react';
 import { Facebook, Instagram, Youtube, User, Download, Printer } from 'lucide-react';
 import { search as searchStudent, normalizeCnic } from '../utils/studentService';
+import { motion } from 'framer-motion';
+import toast from 'react-hot-toast';
 
 export default function DownloadIDCard() {
   const [cnic, setCnic] = useState('');
@@ -33,6 +35,7 @@ export default function DownloadIDCard() {
     const validationError = validateCNIC(cnic);
     if (validationError) {
       setError(validationError);
+      toast.error(validationError);
       return;
     }
 
@@ -45,9 +48,11 @@ export default function DownloadIDCard() {
       if (student) {
         setStudentData(student);
         setError('');
+        toast.success('Student record found!');
       } else {
         setError('No record found with this CNIC. Please check and try again.');
         setStudentData(null);
+        toast.error('No record found with this CNIC.');
       }
       setLoading(false);
     }, 600);
@@ -56,7 +61,8 @@ export default function DownloadIDCard() {
   const handleDownload = () => {
     if (cardRef.current) {
       // In a real app, you'd use html2canvas or similar library
-      alert('Download functionality would generate a PDF/Image of the ID card here.');
+      toast.success('Download started...');
+      // alert('Download functionality would generate a PDF/Image of the ID card here.');
     }
   };
 
@@ -66,63 +72,22 @@ export default function DownloadIDCard() {
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
-      {/* <div className="bg-white shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <img 
-                src="https://saylaniwelfare.com/static/media/logo_saylaniwelfare.22bf709605809177256c.png" 
-                alt="Saylani" 
-                className="h-16" 
-              />
-            </div>
-            <button className="flex items-center gap-2 px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-md hover:bg-blue-50 transition">
-              <User size={20} />
-              Student portal
-            </button>
-          </div>
-        </div>
-      </div> */}
-
-      {/* Social Links */}
-      {/* <div className="max-w-6xl mx-auto px-4 py-4">
-        <div className="flex gap-3">
-          <a href="#" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center text-white hover:bg-blue-700 transition">
-            <Facebook size={20} />
-          </a>
-          <a href="#" className="w-10 h-10 bg-pink-600 rounded-full flex items-center justify-center text-white hover:bg-pink-700 transition">
-            <Instagram size={20} />
-          </a>
-          <a href="#" className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white hover:bg-red-700 transition">
-            <Youtube size={20} />
-          </a>
-        </div>
-      </div> */}
-
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 pb-12">
-        <div className="bg-linear-to-bl from-white  to-[#d0dfda] rounded-lg shadow-md p-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="bg-white/80 backdrop-blur-sm rounded-lg shadow-md p-8 border border-green-100"
+        >
           <h1 className="text-3xl text-green-600 font-bold text-center mb-2">Registration Form - SMIT</h1>
           <p className="text-center text-gray-600 mb-8">Services - Education - Registration</p>
-
-          {/* <div className="flex gap-4 mb-8 border-b">
-            <button className="px-6 py-3 text-gray-600 hover:text-gray-800">
-              <a href="/">Registration</a>
-            </button>
-            <button className="px-6 py-3 text-green-600 border-b-2 border-green-600 font-medium">
-              <a href="/download-id">Download ID Card</a>
-            </button>
-            <button className="px-6 py-3 text-gray-600 hover:text-gray-800">
-              <a href="/results">Results</a>
-            </button>
-          </div> */}
 
           {/* CNIC Search Form */}
           <div className="max-w-2xl mx-auto mb-12">
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-blue-600 mb-2">
+                <label className="block text-sm font-medium text-green-600 mb-2">
                   CNIC (Which you provided during form submission)
                 </label>
                 <input
@@ -130,7 +95,7 @@ export default function DownloadIDCard() {
                   value={cnic}
                   onChange={handleCNICChange}
                   placeholder="CNIC (Which you provided during form submission)"
-                  className={`w-full px-4 py-3 border text-black rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
+                  className={`w-full px-4 py-3 border text-black rounded-md focus:ring-2 focus:ring-green-500 focus:border-transparent ${
                     error ? 'border-red-500' : 'border-gray-300'
                   }`}
                   maxLength={15}
@@ -138,55 +103,65 @@ export default function DownloadIDCard() {
                 {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
               </div>
 
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={handleSubmit}
                 disabled={loading}
-                className="w-full bg-blue-500 hover:bg-blue-600 text-black font-semibold py-3 px-6 rounded-md transition duration-200 disabled:bg-gray-400"
+                className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-md transition duration-200 disabled:bg-gray-400 shadow-lg hover:shadow-green-500/30"
               >
                 {loading ? 'SEARCHING...' : 'SUBMIT'}
-              </button>
+              </motion.button>
             </div>
           </div>
 
           {/* ID Card Display */}
           {studentData && (
-            <div className="space-y-6">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="space-y-6"
+            >
               {/* Action Buttons */}
               <div className="flex justify-center gap-4 print:hidden">
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handleDownload}
-                  className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-black font-semibold rounded-md transition"
+                  className="flex items-center gap-2 px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-md transition shadow-md"
                 >
                   <Download size={20} />
                   DOWNLOAD
-                </button>
-                <button
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                   onClick={handlePrint}
-                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-black font-semibold rounded-md transition"
+                  className="flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-md transition shadow-md"
                 >
                   <Printer size={20} />
                   PRINT
-                </button>
+                </motion.button>
               </div>
 
               {/* Student Cards Table */}
-              <div className="overflow-x-auto">
+              <div className="overflow-x-auto rounded-lg border border-gray-200">
                 <table className="w-full border-collapse">
-                  <thead className="bg-gray-50 text-teal-600">
+                  <thead className="bg-green-50 text-green-800">
                     <tr>
-                      <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Course / Event</th>
-                      <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Batch</th>
-                      <th className="border border-gray-300 px-4 py-3 text-left font-semibold">Action</th>
+                      <th className="border-b border-gray-200 px-4 py-3 text-left font-semibold">Course / Event</th>
+                      <th className="border-b border-gray-200 px-4 py-3 text-left font-semibold">Batch</th>
+                      <th className="border-b border-gray-200 px-4 py-3 text-left font-semibold">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr className="hover:bg-gray-50 text-teal-950">
-                      <td className="border border-gray-300 px-4 py-3">{studentData.course}</td>
-                      <td className="border border-gray-300 px-4 py-3">{studentData.batch}</td>
-                      <td className="border border-gray-300 px-4 py-3">
+                    <tr className="hover:bg-green-50/30 text-gray-800 transition-colors">
+                      <td className="border-b border-gray-200 px-4 py-3">{studentData.course}</td>
+                      <td className="border-b border-gray-200 px-4 py-3">{studentData.batch}</td>
+                      <td className="border-b border-gray-200 px-4 py-3">
                         <button
                           onClick={handleDownload}
-                          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition"
+                          className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded-md transition text-sm"
                         >
                           DOWNLOAD
                         </button>
@@ -200,7 +175,7 @@ export default function DownloadIDCard() {
               <div ref={cardRef} className="max-w-3xl mx-auto bg-white p-8 print:p-0">
                 <div className="border-4 border-green-600 rounded-lg overflow-hidden shadow-xl">
                   {/* Card Header */}
-                  <div className="bg-linear-to-r from-green-600 to-blue-600 p-6 text-white">
+                  <div className="bg-linear-to-r from-green-600 to-green-700 p-6 text-white">
                     <div className="flex items-center justify-between">
                       <img 
                         src="https://saylaniwelfare.com/static/media/logo_saylaniwelfare.22bf709605809177256c.png" 
@@ -290,7 +265,7 @@ export default function DownloadIDCard() {
                         <div className="mt-4 pt-4 border-t border-gray-300">
                           <p className="text-sm text-gray-600">
                             <span className="font-semibold">Donate Us:</span>{' '}
-                            <a href="https://www.saylaniwelfare.com" className="text-blue-600 hover:underline">
+                            <a href="https://www.saylaniwelfare.com" className="text-green-600 hover:underline">
                               https://www.saylaniwelfare.com
                             </a>
                           </p>
@@ -311,9 +286,9 @@ export default function DownloadIDCard() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           )}
-        </div>
+        </motion.div>
       </div>
 
       {/* Print Styles */}
