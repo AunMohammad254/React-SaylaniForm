@@ -1,27 +1,7 @@
 import { useState, useMemo, useRef } from 'react';
 import { validateCNIC } from '../utils/validation';
 import { Search, Download, Printer } from 'lucide-react';
-
-const mockStudents = [
-  {
-    name: 'AUN ABBAS',
-    fatherName: 'ABBAS HAIDER',
-    cnic: '4210143490167',
-    course: 'Web and Mobile App Development',
-    batch: '15',
-    studentId: 'WMA-345770',
-    photo: 'https://via.placeholder.com/150x180/0ea5e9/ffffff?text=Student+Photo',
-  },
-  {
-    name: 'MUHAMMAD ALI',
-    fatherName: 'AHMED ALI',
-    cnic: '4210112345678',
-    course: 'Generative AI & Chatbot',
-    batch: '5',
-    studentId: 'GEN-234567',
-    photo: 'https://via.placeholder.com/150x180/0ea5e9/ffffff?text=Student+Photo',
-  },
-];
+import { search as searchStudent } from '../utils/studentService';
 
 function Results() {
   const [cnic, setCnic] = useState('');
@@ -48,12 +28,7 @@ function Results() {
     setLoading(true);
 
     setTimeout(() => {
-      const found = mockStudents.find((s) => {
-        const matchesCNIC = normalizedCNIC && s.cnic === normalizedCNIC;
-        const matchesCode = studentCode && s.studentId.toLowerCase() === studentCode.toLowerCase();
-        return matchesCNIC || matchesCode;
-      });
-
+      const found = searchStudent({ cnic: normalizedCNIC, studentCode });
       if (!found) {
         setError('No record found. Please check your details and try again.');
         setResult(null);

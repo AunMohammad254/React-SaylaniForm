@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import { Facebook, Instagram, Youtube, User, Download, Printer } from 'lucide-react';
+import { search as searchStudent, normalizeCnic } from '../utils/studentService';
 
 export default function DownloadIDCard() {
   const [cnic, setCnic] = useState('');
@@ -8,27 +9,7 @@ export default function DownloadIDCard() {
   const [loading, setLoading] = useState(false);
   const cardRef = useRef(null);
 
-  // Mock database of students
-  const studentsDatabase = {
-    '4210143490167': {
-      name: 'AUN ABBAS',
-      fatherName: 'ABBAS HAIDER',
-      cnic: '4210143490167',
-      course: 'Web and Mobile App Development',
-      batch: '15',
-      studentId: 'WMA-345770',
-      photo: 'https://via.placeholder.com/150x180/0ea5e9/ffffff?text=Student+Photo'
-    },
-    '4210112345678': {
-      name: 'MUHAMMAD ALI',
-      fatherName: 'AHMED ALI',
-      cnic: '4210112345678',
-      course: 'Generative AI & Chatbot',
-      batch: '5',
-      studentId: 'GEN-234567',
-      photo: 'https://via.placeholder.com/150x180/0ea5e9/ffffff?text=Student+Photo'
-    }
-  };
+  // Mock database moved to shared service
 
   const validateCNIC = (value) => {
     const cleanCNIC = value.replace(/[-\s]/g, '');
@@ -56,11 +37,11 @@ export default function DownloadIDCard() {
     }
 
     setLoading(true);
-    const cleanCNIC = cnic.replace(/[-\s]/g, '');
+    const cleanCNIC = normalizeCnic(cnic);
 
     // Simulate API call
     setTimeout(() => {
-      const student = studentsDatabase[cleanCNIC];
+      const student = searchStudent({ cnic: cleanCNIC });
       if (student) {
         setStudentData(student);
         setError('');
@@ -69,7 +50,7 @@ export default function DownloadIDCard() {
         setStudentData(null);
       }
       setLoading(false);
-    }, 1000);
+    }, 600);
   };
 
   const handleDownload = () => {
