@@ -5,11 +5,10 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=0:16a34a,100:22c55e&height=200&section=header&text=SMIT%20Admission%20Form&fontSize=50&fontColor=ffffff&animation=fadeIn&fontAlignY=35&desc=Saylani%20Mass%20IT%20Training%20Program&descSize=20&descAlignY=55" width="100%"/>
 
 <!-- Animated Typing -->
-<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=16A34A&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=80&lines=Modern+React+19+%2B+Vite+7+Application;Beautiful+UI+with+Tailwind+CSS+v4;Complete+Validation+%26+Supabase+Backend" alt="Typing SVG" /></a>
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=16A34A&center=true&vCenter=true&multiline=true&repeat=true&width=600&height=90&lines=Modern+React+19+%2B+Vite+7+Application;Beautiful+UI+with+Tailwind+CSS+v4;Complete+Validation+%26+Supabase+Backend" alt="Typing SVG" /></a>
 
 <br/>
-<br/>
-<br/>
+
 <!-- Badges Row 1 -->
 <p>
   <img src="https://img.shields.io/badge/React-19.2.0-61DAFB?style=for-the-badge&logo=react&logoColor=white&labelColor=20232A" alt="React"/>
